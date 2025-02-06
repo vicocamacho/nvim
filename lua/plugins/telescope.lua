@@ -8,6 +8,11 @@ return {
   },
   config = function()
     require('telescope').setup {
+      defaults = {
+        preview = {
+          filesize_limit = 0.5555,
+        },
+      },
       extensions = {
         fzf = {}
       }

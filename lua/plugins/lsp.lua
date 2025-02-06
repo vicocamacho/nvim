@@ -1,17 +1,7 @@
 return {
-
-  {
-    "williamboman/mason.nvim",
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-  },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup()
-
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local lspconfig = require('lspconfig')
 
@@ -19,16 +9,35 @@ return {
         capabilities = capabilities
       }
       lspconfig.ruby_lsp.setup({
+        enabled = true,
         capabilities = capabilities,
         init_options = {
           formatter = 'standard',
           linters = { 'standard' },
         },
+        cmd = { "/Users/victor/.rbenv/shims/ruby-lsp" },
       })
 
 
+      vim.keymap.set(
+        "n",
+        "<leader>cd",
+        function()
+          vim.lsp.log.debug("hola")
+          vim.lsp.buf.references()
+          vim.lsp.log.debug("adios")
+        end
+      )
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
       vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
+      vim.keymap.set(
+        "n",
+        "<leader>hh",
+        function()
+          vim.lsp.buf.clear_references()
+          vim.lsp.buf.document_highlight()
+        end
+      )
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)

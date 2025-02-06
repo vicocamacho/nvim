@@ -42,6 +42,11 @@ vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 
+vim.keymap.set("n", "<leader>s1", "<cmd>silent !tmux-sessionizer wh<CR>")
+vim.keymap.set("n", "<leader>s2", "<cmd>silent !tmux-sessionizer ruby-lsp<CR>")
+vim.keymap.set("n", "<leader>s3", "<cmd>silent !tmux-sessionizer .config<CR>")
+vim.keymap.set("n", "<leader>s4", "<cmd>silent !tmux-sessionizer geisha<CR>")
+
 vim.cmd("autocmd FileType ruby setlocal indentkeys-=.")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
