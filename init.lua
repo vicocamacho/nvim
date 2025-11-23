@@ -14,6 +14,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
+vim.opt.signcolumn = "yes"
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -43,9 +44,8 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("n", "<leader>s1", "<cmd>silent !tmux-sessionizer wh<CR>")
-vim.keymap.set("n", "<leader>s2", "<cmd>silent !tmux-sessionizer ruby-lsp<CR>")
+vim.keymap.set("n", "<leader>s2", "<cmd>silent !tmux-sessionizer squire<CR>")
 vim.keymap.set("n", "<leader>s3", "<cmd>silent !tmux-sessionizer .config<CR>")
-vim.keymap.set("n", "<leader>s4", "<cmd>silent !tmux-sessionizer geisha<CR>")
 
 vim.cmd("autocmd FileType ruby setlocal indentkeys-=.")
 

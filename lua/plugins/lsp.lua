@@ -2,32 +2,22 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local lspconfig = require('lspconfig')
+      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
+      -- local lspconfig = require('lspconfig')
 
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities
-      }
-      lspconfig.ruby_lsp.setup({
-        enabled = true,
-        capabilities = capabilities,
-        init_options = {
-          formatter = 'standard',
-          linters = { 'standard' },
-        },
-        cmd = { "/Users/victor/.rbenv/shims/ruby-lsp" },
-      })
-
+      vim.lsp.enable("herb_ls")
+      vim.lsp.enable("lua_ls")
+      vim.lsp.enable("ruby_lsp")
+      vim.lsp.enable("rubocop")
 
       vim.keymap.set(
         "n",
         "<leader>cd",
         function()
-          vim.lsp.log.debug("hola")
           vim.lsp.buf.references()
-          vim.lsp.log.debug("adios")
         end
       )
+      vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
       vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
       vim.keymap.set(
